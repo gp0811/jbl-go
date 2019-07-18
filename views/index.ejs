@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="JBL" ng-controller="formCtrl" id="main">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#"></a>
+            <div class="tongled">
+              <div id="tongled-flex">
+                <p><i class="fa fa-shopping-cart fa-4x" ></i><p class="count-cart-t">0</p></p>
+                <button class="navbar-toggler">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Electronics</a>
+                    <a class="dropdown-item" href="#">Fashion</a>
+                    <a class="dropdown-item" href="#">Home & Kitchen</a>
+                    <a class="dropdown-item" href="#">Education</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Others</a>
+                  </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Amazon Pay</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Sell</a>
+                </li>
+              </ul>
+              <span><i class="fa fa-shopping-cart fa-2x" ></i><p class="count-cart">0</p></span>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+          <div class="toggled">
+              <ul class="navbar-nav nav-ham mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Electronics</a>
+                      <a class="dropdown-item" href="#">Fashion</a>
+                      <a class="dropdown-item" href="#">Home & Kitchen</a>
+                      <a class="dropdown-item" href="#">Education</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Others</a>
+                    </div>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#">Amazon Pay</a>
+                    </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Sell</a>
+                  </li>
+                
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </ul>
+          </div>
+
+          <div id="product-intro">
+            <img id="product-image" src= "https://www.jbl.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwc33270fb/JBL-GO_BLACK_005_dvHAMaster.png" >
+            <div id="product-title">
+              <h4><%=name.name%></h4>
+              <h1><%=name.title%></h1>
+            </div>
+          </div>
+
+          <div id="purchase">
+            <div id="rating">
+              <div class="ratings"><h6><%= name.topScores[0].topic%></h6><h1><%= name.topScores[0].score%></h1></div>
+              <div class="ratings"><h6><%= name.topScores[1].topic%></h6><h1><%= name.topScores[1].score%></h1></div>
+              <div class="ratings"><h6><%= name.topScores[2].topic%></h6><h1><%= name.topScores[2].score%></h1></div>
+              <div class="ratings"><h6><%= name.topScores[3].topic%></h6><h1><%= name.topScores[3].score%></h1></div>
+            </div>
+            <div id="review">
+              <p>The top rated <%=name.sourceCategory%> since launched on <%=createdDate%> and amongst the top review count ongoing <%=name.reviewCount%></p><br>
+              <p>Last review on <%= lastReviewDate%></p>
+            </div>
+            <div id="price">
+              <div id="oneMore">
+                <div id="price-box"><%=name.price%></div>
+                <div id="cart-form">
+                  <form>
+                    <p>Quantity <span>*</span></p>
+                    <input type="text" ng-model="count" id="product-quantity">
+                    <button ng-click="add()" id="quantity-add-minus"><p>+</p></button>
+                    <button ng-click="minus()" id="quantity-add-minus"><p>-</p></button>
+                  </form>
+                </div>
+                <div id="submit-btn">
+                  <button id="Submit">Add To Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer>
+            <p>Made with <span class="fa fa-heart" id="heart"></span> by Gaurav Patil</p>
+          </footer>
+
+
+
+      <!--<form novalidate>
+        <p>Name: <input type="text" ng-model="count"></p>
+        <button ng-click="add()">+</button>
+        <button ng-click="minus()">-</button>
+      </form>
+      <p>{{count}}</p>
+      <p><%= name.topScores[1].topic%></p>-->
+    </div>
+    <script src="/javascripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
